@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Happy Birthday Ishaan!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
+<style>
+:root{--plum:#2B1346;--mag:#E83F8C;--amber:#FFB23E;--mint:#4FD8C4;--cream:#FFF4E6;--rose:#FFE3EE;--ink2:#6B5A7E;
+--head:'Bricolage Grotesque',system-ui,sans-serif;--body:'Figtree',system-ui,sans-serif;--serif:'Fraunces',Georgia,serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--plum);font-family:var(--body);font-size:17px;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+:focus-visible{outline:3px solid var(--mag);outline-offset:3px}
+.head{font-family:var(--head);font-weight:800;line-height:1;letter-spacing:-.025em;font-variation-settings:'opsz' 96}
+
+/* now-playing bar */
+#player{position:fixed;top:0;left:0;right:0;z-index:50;background:var(--plum);color:var(--cream);height:46px;display:flex;align-items:center;gap:12px;padding:0 14px;box-sizing:content-box;padding-top:env(safe-area-inset-top,0px)}
+#player .disc{width:26px;height:26px;border-radius:50%;flex:none;background:radial-gradient(circle,var(--amber) 0 18%,#111 19% 100%);animation:spin 3s linear infinite}
+#player .ti{font:600 12px var(--head);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:34vw}
+#bar{flex:1;height:4px;background:#ffffff30;border-radius:3px;position:relative}
+#bar i{position:absolute;inset:0 auto 0 0;width:0;background:linear-gradient(90deg,var(--amber),var(--mag));border-radius:3px}
+#time{font:600 12px var(--head);color:var(--amber);min-width:84px;text-align:right}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+section{min-height:100svh;padding:92px 22px 70px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.wrap{max-width:940px;margin:0 auto;width:100%;position:relative;z-index:2}
+.btn{display:inline-block;background:var(--mag);color:#fff;font:700 16px var(--head);padding:15px 30px;min-height:48px;border-radius:40px;text-decoration:none;box-shadow:0 5px 0 #a82a63;transition:transform .1s,box-shadow .1s}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 #a82a63}
+
+/* hero */
+#hero{background:linear-gradient(160deg,var(--cream) 0,#FFD3E5 55%,#FFC98A 100%)}
+.hgrid{display:grid;gap:36px;align-items:center}
+@media(min-width:820px){.hgrid{grid-template-columns:1.1fr 1fr}}
+.hb{font:700 clamp(16px,3.6vw,22px) var(--head);color:var(--mag);margin-bottom:10px}
+#hero h1{font-size:clamp(64px,18vw,160px);margin-bottom:12px}
+.age{display:inline-block;background:var(--plum);color:var(--amber);font:700 clamp(15px,3.4vw,20px) var(--head);padding:7px 18px;border-radius:30px;margin-bottom:20px;transform:rotate(-2deg)}
+.lede{max-width:470px;color:var(--ink2);font-size:19px;margin-bottom:28px}
+.vinyl{width:min(80vw,380px);aspect-ratio:1;border-radius:50%;margin:0 auto;position:relative;animation:spin 9s linear infinite;
+ background:repeating-radial-gradient(circle,#1a0d2b 0 2px,#2c1745 2px 4px);box-shadow:0 20px 50px #2b134655}
+.vinyl::after{content:'';position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 20deg,transparent 0 20%,#ffffff22 25%,transparent 30% 70%,#ffffff1a 75%,transparent 80%)}
+.vinyl .label{position:absolute;inset:32%;border-radius:50%;background:linear-gradient(135deg,var(--mag),var(--amber));overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;font:700 11px var(--head);color:#fff;padding:6px;z-index:2}
+.vinyl .label img{width:100%;height:100%;object-fit:cover}
+.vinyl .label::after{content:'';position:absolute;left:50%;top:50%;width:10px;height:10px;margin:-5px;border-radius:50%;background:var(--cream)}
+.note{position:absolute;font-size:30px;color:var(--mag);opacity:.5;animation:float 6s ease-in-out infinite alternate;pointer-events:none}
+@keyframes float{from{transform:translateY(0) rotate(-8deg)}to{transform:translateY(-26px) rotate(10deg)}}
+
+/* tracks */
+.tk:nth-of-type(odd){background:var(--cream)}
+.tk:nth-of-type(even){background:var(--rose)}
+.row{display:grid;gap:40px;align-items:center}
+@media(min-width:820px){.row{grid-template-columns:1.1fr 1fr}.tk.flip .sleeve{order:-1}}
+.pill{display:inline-flex;gap:10px;background:var(--plum);color:var(--cream);font:700 13px var(--head);padding:6px 14px;border-radius:20px;margin-bottom:16px}
+.pill span{color:var(--amber)}
+.tk h2{font-size:clamp(34px,7vw,56px);margin-bottom:16px}
+.tk p{max-width:480px;color:var(--ink2)}
+.tk p+p{margin-top:12px}
+.sleeve{position:relative;width:min(78%,300px);margin:0 auto}
+.sleeve::before{content:'';position:absolute;top:6%;left:34%;width:92%;aspect-ratio:1;border-radius:50%;background:repeating-radial-gradient(circle,#1a0d2b 0 2px,#2c1745 2px 4px);box-shadow:0 10px 24px #2b134644;transition:transform .5s}
+.tk.flip .sleeve::before{left:auto;right:34%}
+.sleeve:hover::before{transform:translateX(14px)}
+.art{position:relative;z-index:1;aspect-ratio:1;border-radius:12px;background:linear-gradient(135deg,#FFC1D9,#FFE3A8);box-shadow:0 14px 30px #2b134640;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;font:600 13px var(--head);color:var(--ink2);padding:12px}
+.art img{width:100%;height:100%;object-fit:cover}
+
+/* photo shapes: wide 16:9 and tall 2:3 */
+.sleeve.wide{width:min(88%,520px)}
+.sleeve.wide .art{aspect-ratio:16/9}
+.sleeve.wide::before{width:auto;height:116%;top:-8%;left:auto;right:-12%}
+.tk.flip .sleeve.wide::before{right:auto;left:-12%}
+.sleeve.tall{width:min(66%,260px)}
+.sleeve.tall .art{aspect-ratio:2/3}
+.sleeve.tall::before{width:96%;top:8%;left:40%}
+@media(min-width:820px){
+  #t0 .row{grid-template-columns:.9fr 1.3fr}
+  #t2 .row{grid-template-columns:1.3fr .8fr}
+}
+
+/* meter */
+.meters{margin-top:24px;display:grid;gap:14px;max-width:480px}
+.m small{display:flex;justify-content:space-between;font:700 13px var(--head);margin-bottom:5px}
+.m div{height:12px;border-radius:8px;background:#2b134618;overflow:hidden}
+.m i{display:block;height:100%;width:0;border-radius:8px;transition:width 1.6s cubic-bezier(.2,.8,.2,1)}
+
+/* jokes */
+#jokes{background:var(--plum);color:var(--cream);text-align:center;align-items:center}
+#jokes .pill{background:var(--amber);color:var(--plum)}#jokes .pill span{color:var(--plum)}
+#jokes h2{font-size:clamp(32px,7vw,54px);margin-bottom:26px}
+.joke{max-width:560px;margin:0 auto 24px;background:#ffffff14;border:1px solid #ffffff30;border-radius:22px;padding:30px 24px;font:italic 400 clamp(20px,3.8vw,26px)/1.4 var(--serif);min-height:130px;display:flex;align-items:center;justify-content:center}
+.joke.swap{animation:swap .5s}
+@keyframes swap{from{opacity:0;transform:translateY(12px) rotate(-1deg)}}
+.tss{height:30px;font:800 18px var(--head);color:var(--amber);letter-spacing:.2em;margin-top:18px;opacity:0}
+.tss.go{animation:tss 1.2s}
+@keyframes tss{0%{opacity:0;transform:scale(.6)}20%{opacity:1;transform:scale(1.15)}100%{opacity:0;transform:scale(1)}}
+#jokes .btn{background:var(--amber);color:var(--plum);box-shadow:0 5px 0 #c98313}
+.rate{margin-top:20px;font:600 13px var(--head);color:#fff9}
+
+/* piano */
+#piano{background:linear-gradient(180deg,#FFD08A,#FFB6CF);text-align:center;align-items:center}
+#piano h2{font-size:clamp(30px,7vw,54px);margin-bottom:10px}
+#piano p{margin-bottom:26px}
+.dots{display:flex;gap:7px;justify-content:center;margin-bottom:26px}
+.dots i{width:12px;height:12px;border-radius:50%;background:#2b134633;transition:background .2s,transform .2s}
+.dots i.on{background:var(--mag);transform:scale(1.2)}
+.keys{display:flex;justify-content:center;gap:4px}
+.key{position:relative;width:calc((100vw - 52px)/9);max-width:74px;height:clamp(170px,40vw,230px);background:#fff;border-radius:0 0 12px 12px;border:2px solid var(--plum);box-shadow:0 8px 0 var(--plum);display:flex;align-items:flex-end;justify-content:center;padding-bottom:14px;font:800 clamp(11px,3.2vw,16px) var(--head);touch-action:manipulation;user-select:none;transition:transform .08s,box-shadow .08s,background .15s}
+.key.hi::before{content:'';position:absolute;top:14px;left:50%;width:6px;height:6px;margin-left:-3px;border-radius:50%;background:var(--mag)}
+.key:active,.key.hit{transform:translateY(6px);box-shadow:0 2px 0 var(--plum)}
+.key.next{background:#FFE9F2;animation:glow 1s ease-in-out infinite alternate}
+.key.bad{animation:shake .3s}
+@keyframes glow{from{box-shadow:0 8px 0 var(--plum),0 0 0 0 #E83F8C00}to{box-shadow:0 8px 0 var(--plum),0 0 28px 8px #E83F8Caa}}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+#phint{margin-top:30px;font:italic 400 18px var(--serif)}
+
+/* finale: curtain */
+#finish{display:none;background:radial-gradient(ellipse at 50% 30%,#FFF0B8 0,#FFC98A 40%,#FF9EC4 100%);text-align:center;align-items:center}
+#finish.show{display:flex}
+.curtain{position:absolute;top:0;bottom:0;width:50.5%;z-index:5;transition:transform 2.2s cubic-bezier(.65,0,.25,1);
+ background:repeating-linear-gradient(90deg,#c42a73 0 26px,#E83F8C 26px 56px,#d5337d 56px 80px);box-shadow:0 0 40px #0005}
+.curtain.l{left:0;border-right:4px solid var(--amber)}.curtain.r{right:0;border-left:4px solid var(--amber)}
+#finish.open .curtain.l{transform:translateX(-102%)}#finish.open .curtain.r{transform:translateX(102%)}
+#encore{position:absolute;z-index:6;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--amber);color:var(--plum);font:800 20px var(--head);padding:18px 34px;border-radius:50px;box-shadow:0 6px 0 #c98313,0 0 0 8px #ffffff55;animation:pulse 1.6s infinite;transition:opacity .4s}
+#finish.open #encore{opacity:0;pointer-events:none}
+@keyframes pulse{50%{box-shadow:0 6px 0 #c98313,0 0 0 18px #ffffff00}}
+#finish .hb{color:var(--mag)}
+#finish h2{font-size:clamp(64px,19vw,180px);margin-bottom:22px;text-shadow:0 4px 0 #ffffff88}
+.msg{max-width:620px;margin:0 auto 20px;background:#fff;border-radius:22px;padding:30px 26px;font:italic 400 clamp(18px,3vw,21px)/1.6 var(--serif);text-align:left;box-shadow:0 12px 30px #2b134633;opacity:0;transform:translateY(16px);transition:opacity 1.2s 1.6s,transform 1.2s 1.6s}
+.sub{font:700 15px var(--head);color:var(--mag);opacity:0;transition:opacity 1.2s 2.4s}
+#finish.open .msg,#finish.open .sub{opacity:1;transform:none}
+.conf,.spark{position:fixed;pointer-events:none;z-index:60}
+.conf{top:-14px;width:9px;height:14px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(112vh) rotate(720deg)}}
+.spark{bottom:-12px;border-radius:50%;background:var(--c);animation:up linear forwards}
+@keyframes up{0%{opacity:0}15%{opacity:1}100%{opacity:0;transform:translateY(-105vh) translateX(var(--dx))}}
+
+.egg{position:fixed;left:8px;bottom:calc(8px + env(safe-area-inset-bottom,0px));font:600 11px var(--head);color:var(--ink2);opacity:.55;padding:12px;z-index:40}
+#modal{position:fixed;inset:0;z-index:80;background:#2b1346d0;display:none;align-items:center;justify-content:center;padding:24px}
+#modal.show{display:flex}
+#modal div{background:var(--cream);max-width:420px;padding:30px 24px;text-align:center;border-radius:22px}
+#modal p{margin-bottom:20px;font:italic 400 19px/1.5 var(--serif)}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<div id="player" aria-hidden="true"><div class="disc"></div><div class="ti" id="ptitle"></div><div id="bar"><i id="pfill"></i></div><div id="time">0:00 / 3:20</div></div>
+
+<section id="hero">
+  <span class="note" style="left:6%;top:24%">♪</span><span class="note" style="right:8%;top:20%;animation-delay:-2s;font-size:40px">♫</span><span class="note" style="left:44%;bottom:8%;animation-delay:-4s">♩</span>
+  <div class="wrap hgrid">
+    <div>
+      <div class="hb">Happy Birthday</div>
+      <h1 class="head" id="title"></h1>
+      <div class="age" id="age"></div>
+      <p class="lede" id="lede"></p>
+      <a class="btn" href="#t0">Press play</a>
+    </div>
+    <div class="vinyl" aria-hidden="true"><div class="label" id="vlabel"></div></div>
+  </div>
+</section>
+
+<div id="tracks"></div>
+
+<section id="jokes">
+  <div class="wrap">
+    <span class="pill">Track <span id="jn"></span></span>
+    <h2 class="head">Ishaan's comedy hour</h2>
+    <div class="joke" id="joke">Tap the button. We warned you.</div>
+    <button class="btn" id="jbtn">Tell a joke</button>
+    <div class="tss" id="tss">BA DUM TSS</div>
+    <div class="rate">Rated: lame. Loved anyway.</div>
+  </div>
+</section>
+
+<section id="piano">
+  <div class="wrap">
+    <h2 class="head">Your turn on stage, maestro</h2>
+    <p>Play Happy Birthday in sargam by following the glowing key: Pa Pa Dha Pa Sa Ni, Pa Pa Dha Pa Re Sa. The dotted keys are the upper octave.</p>
+    <div class="dots" id="dots"></div>
+    <div class="keys" id="keys"></div>
+    <div id="phint">Tap the glowing key (sound on).</div>
+  </div>
+</section>
+
+<section id="finish">
+  <div class="curtain l"></div><div class="curtain r"></div>
+  <button id="encore">Encore!</button>
+  <div class="wrap">
+    <div class="hb">Happy Birthday</div>
+    <h2 class="head" id="fname"></h2>
+    <div class="msg" id="final"></div>
+    <div class="sub" id="next"></div>
+  </div>
+</section>
+
+<button class="egg" id="egg">don't tap</button>
+<div id="modal"><div><p id="eggtext"></p><button class="btn" id="close">Close</button></div></div>
+
+<script>
+/* ============ EDIT ONLY THIS OBJECT ============
+   Photos: put image files in the same folder as index.html, then write the filename. "" = placeholder. */
+const D = {
+  name: "Ishaan",
+  nick: "Modak",
+  age: "Turning 20",
+  heroPhoto: "hero.jpeg",     // round photo on the spinning record, e.g. "ishaan_hero.jpg"
+  lede: "A voice that's been special since childhood, the lamest jokes in MitraMandal, and a friend who matters even when he skips the meetup.",
+
+  tracks: [
+    { title:"One of the original four", len:"2:48", shape:"wide", image:"img_1.jpg", cap:"Where it started",
+      text:["Around 6th std there were only four of us: chill, average in studies, and happiest when playing. Ishaan was one of those four, right from the start.",
+            "By 8th std the four boys had become a group of ten, with six girls joining in. That was MitraMandal, and Ishaan was there before it had a name."] },
+    { title:"The voice", len:"3:12", image:"img_2.jpeg", cap:"Born to sing",
+      text:["Ishaan has had a stunning voice since he was a kid. Most of us found our hobby later. He found his first, and he never put it down.",
+            "Today he's chasing it as a career. When he sings, the whole room goes quiet, and for once nobody is waiting for the punchline."] },
+    { title:"Rare sighting", len:"3:40", shape:"tall", image:"img_3.jpg", cap:"Spotted (once)", meters:true,
+      text:["Since 12th, getting Ishaan to a meetup is a quarterly event. We've stopped planning around him and just celebrate when he turns up.",
+            "But he's still one of the most important people in MM. Some friends are around every day. Some are around when it matters, and that's him."] },
+    { title:"The new duet", len:"2:56", image:"img_4.jpeg", cap:"Plot twist",
+      text:["Big update: Ishaan has found his duet partner, and it's the serious kind. We've met her, and she fits right into the chaos, which is the highest praise MM gives.",
+            "Plenty of singers perform solo for years. It takes something special to find someone who keeps your rhythm. Looks good on you, Modak. Keep making good music together."] }
+  ],
+  meters:[ {l:"Meetup attendance",v:12,c:"var(--mag)",t:"12%"}, {l:"Importance to MM",v:100,c:"var(--mint)",t:"100%"}, {l:"Lame jokes",v:100,c:"var(--amber)",t:"off the charts"} ],
+
+  jokes:[
+    "Why did the singer bring a ladder? To hit the high notes.",
+    "What's a singer's favourite vegetable? Beets.",
+    "I wanted to tell a joke about pitch, but it'd go over everyone's head.",
+    "Why was the musician arrested? He got caught with the wrong notes.",
+    "I'd sing you a joke, but I'm not allowed near the mic after the last one."
+  ],
+
+  final: "Twenty years, a voice we'll happily say we knew before it was famous, and the lamest jokes anyone has ever loved. You may rarely show up, but the group is never complete without you. Happy 20th birthday, Ishaan. Here's to the front row cheering the loudest, and to many more encores.",
+  next: "Next on the setlist: a meetup where you actually show up.",
+  egg: "Secret track unlocked. Yes, we built a whole concert for one birthday. Ishaan didn't ask for it. MM did it anyway."
+};
+/* ============ RENDER (no need to edit) ============ */
+const $ = id => document.getElementById(id);
+const cols=['#E83F8C','#FFB23E','#4FD8C4','#FF9EC4','#2B1346'];
+document.title = "Happy Birthday "+D.name+"!";
+$('title').textContent=D.name; $('age').textContent=D.age; $('lede').textContent=D.lede;
+$('fname').textContent=D.name; $('final').textContent="\u201C"+D.final+"\u201D"; $('next').textContent=D.next;
+$('eggtext').textContent=D.egg; $('ptitle').textContent="Now playing: Happy 20th, "+D.name;
+
+function photo(src,cap,alt){
+  return src ? `<img src="${src}" alt="${alt}" onerror="this.replaceWith(document.createTextNode('Add photo: ${src}'))">` : cap;
+}
+$('vlabel').innerHTML = D.heroPhoto ? photo(D.heroPhoto,'',D.name) : 'Add a photo';
+
+$('tracks').innerHTML = D.tracks.map((t,i)=>`
+  <section class="tk ${i%2?'flip':''}" id="t${i}">
+    <div class="wrap row">
+      <div>
+        <span class="pill">Track 0${i+1} <span>${t.len}</span></span>
+        <h2 class="head">${t.title}</h2>
+        ${t.text.map(x=>`<p>${x}</p>`).join('')}
+        ${t.meters?`<div class="meters">${D.meters.map(m=>`<div class="m"><small><span>${m.l}</span><span>${m.t}</span></small><div><i data-w="${m.v}" style="background:${m.c}"></i></div></div>`).join('')}</div>`:''}
+      </div>
+      <div class="sleeve ${t.shape||''}"><div class="art">${photo(t.image,'Add a photo here',t.cap)}</div></div>
+    </div>
+  </section>`).join('');
+$('jn').textContent = '0'+(D.tracks.length+1);
+
+/* meters animate when seen */
+document.querySelectorAll('.m i').forEach(el=>{
+  const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ el.style.width=el.dataset.w+'%'; io.disconnect(); }}),{threshold:.6}); io.observe(el);
+});
+
+/* player progress follows scroll */
+function onScroll(){
+  const max=document.documentElement.scrollHeight-innerHeight, p=max>0?Math.min(1,scrollY/max):0;
+  $('pfill').style.width=(p*100)+'%';
+  const s=Math.round(p*200); $('time').textContent=Math.floor(s/60)+':'+String(s%60).padStart(2,'0')+' / 3:20';
+}
+addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+/* sound */
+let ac, unlocked=false;
+function ctx(){
+  if(!ac){ try{ ac=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} }
+  if(ac && ac.state!=='running') ac.resume();
+  return ac;
+}
+/* iOS plays Web Audio on the ringer channel, so a silent <audio> clip switches it to media so the keys sound even in silent mode */
+function unlock(){
+  if(unlocked) return; unlocked=true;
+  try{
+    const n=800, buf=new ArrayBuffer(44+n*2), v=new DataView(buf);
+    const w=(o,t)=>[...t].forEach((c,i)=>v.setUint8(o+i,c.charCodeAt(0)));
+    w(0,'RIFF'); v.setUint32(4,36+n*2,true); w(8,'WAVEfmt '); v.setUint32(16,16,true); v.setUint16(20,1,true); v.setUint16(22,1,true);
+    v.setUint32(24,8000,true); v.setUint32(28,16000,true); v.setUint16(32,2,true); v.setUint16(34,16,true); w(36,'data'); v.setUint32(40,n*2,true);
+    const el=new Audio(URL.createObjectURL(new Blob([buf],{type:'audio/wav'}))); el.play().catch(()=>{});
+  }catch(e){}
+  ctx();
+}
+['pointerdown','touchstart','click','keydown'].forEach(ev=>addEventListener(ev,unlock,{once:true,passive:true}));
+function tone(f,dur=.7){
+  const a=ctx(); if(!a) return; const t=a.currentTime;
+  const g=a.createGain(); g.gain.setValueAtTime(.0001,t); g.gain.exponentialRampToValueAtTime(.5,t+.015); g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+  g.connect(a.destination);
+  [['triangle',1,1],['sine',2,.35]].forEach(([type,m,vol])=>{
+    const o=a.createOscillator(), og=a.createGain(); o.type=type; o.frequency.value=f*m; og.gain.value=vol;
+    o.connect(og); og.connect(g); o.start(t); o.stop(t+dur+.05);
+  });
+}
+function noise(t0,dur,vol,hp){
+  const a=ctx(); if(!a) return; const n=a.sampleRate*dur, b=a.createBuffer(1,n,a.sampleRate), d=b.getChannelData(0);
+  for(let i=0;i<n;i++) d[i]=Math.random()*2-1;
+  const s=a.createBufferSource(); s.buffer=b; const f=a.createBiquadFilter(); f.type='highpass'; f.frequency.value=hp;
+  const g=a.createGain(); g.gain.setValueAtTime(vol,a.currentTime+t0); g.gain.exponentialRampToValueAtTime(.001,a.currentTime+t0+dur);
+  s.connect(f).connect(g).connect(a.destination); s.start(a.currentTime+t0);
+}
+function rimshot(){ tone(110,.2); setTimeout(()=>tone(90,.2),180); noise(.38,.5,.4,5000); }
+
+/* jokes */
+let ji=-1;
+$('jbtn').onclick=()=>{
+  ji=(ji+1)%D.jokes.length; const j=$('joke'); j.classList.remove('swap'); void j.offsetWidth;
+  j.textContent=D.jokes[ji]; j.classList.add('swap'); $('jbtn').textContent='Another one';
+  setTimeout(()=>{ rimshot(); const t=$('tss'); t.classList.remove('go'); void t.offsetWidth; t.classList.add('go'); },900);
+};
+
+/* piano: Happy Birthday, first two phrases */
+const K=[['sa','Sa',523-261],['re','Re',294],['ga','Ga',330],['ma','Ma',349],['pa','Pa',392],['dha','Dha',440],['ni','Ni',494],['sa2','Sa',523,1],['re2','Re',587,1]];
+K[0][2]=262;
+const F=Object.fromEntries(K.map(k=>[k[0],k[2]]));
+const seq=['pa','pa','dha','pa','sa2','ni','pa','pa','dha','pa','re2','sa2']; let pos=0, done=false;
+$('dots').innerHTML=seq.map(()=>'<i></i>').join('');
+$('keys').innerHTML=K.map(k=>`<button class="key ${k[3]?'hi':''}" data-k="${k[0]}" aria-label="${k[1]}">${k[1]}</button>`).join('');
+function mark(){
+  document.querySelectorAll('.key').forEach(k=>k.classList.toggle('next',!done&&k.dataset.k===seq[pos]));
+  document.querySelectorAll('.dots i').forEach((d,i)=>d.classList.toggle('on',i<pos));
+}
+mark();
+document.querySelectorAll('.key').forEach(k=>k.addEventListener('click',()=>{
+  if(done) return; const n=k.dataset.k; tone(F[n]);
+  if(n===seq[pos]){ pos++; mark(); if(pos===seq.length){ done=true; mark(); $('phint').textContent='Bravo!'; setTimeout(openStage,700); } }
+  else { k.classList.add('bad'); setTimeout(()=>k.classList.remove('bad'),300); }
+}));
+
+/* finale */
+function confetti(n){ for(let i=0;i<n;i++){ const c=document.createElement('div'); c.className='conf';
+  c.style.left=Math.random()*100+'vw'; c.style.background=cols[i%5]; c.style.borderRadius=i%3?'2px':'50%';
+  c.style.animationDuration=(2.5+Math.random()*2.5)+'s'; c.style.animationDelay=Math.random()+'s';
+  document.body.appendChild(c); setTimeout(()=>c.remove(),7000);} }
+function sparks(n){ for(let i=0;i<n;i++){ const p=document.createElement('div'); p.className='spark';
+  const z=3+Math.random()*5; p.style.width=p.style.height=z+'px'; p.style.left=(5+Math.random()*90)+'vw';
+  p.style.setProperty('--c',cols[i%4]); p.style.setProperty('--dx',(Math.random()*80-40)+'px');
+  p.style.animationDuration=(5+Math.random()*5)+'s'; p.style.animationDelay=(Math.random()*2.5)+'s';
+  document.body.appendChild(p); setTimeout(()=>p.remove(),12000);} }
+function openStage(){ $('finish').classList.add('show'); $('finish').scrollIntoView({behavior:'smooth'}); }
+$('encore').onclick=()=>{
+  $('finish').classList.add('open');
+  [392,392,440,392,523,494].forEach((f,i)=>setTimeout(()=>tone(f,.5),300+i*320));
+  setTimeout(()=>{confetti(110);sparks(60);},1200);
+};
+
+$('egg').onclick=()=>$('modal').classList.add('show');
+$('close').onclick=()=>$('modal').classList.remove('show');
+confetti(30);
+</script>
+</body>
+</html>
